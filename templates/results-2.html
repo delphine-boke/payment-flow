@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reconciliation Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 800px; margin: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .matched { color: green; } .unmatched { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reconciliation Results</h1>
+        <table>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>Recipient</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            {% for result in results %}
+            <tr>
+                <td>{{ result.transaction_id }}</td>
+                <td>{{ result.amount_input }}</td>
+                <td>{{ result.currency_input }}</td>
+                <td>{{ result.recipient }}</td>
+                <td>{{ result.date_input }}</td>
+                <td class="{{ 'matched' if result.status == 'Matched' else 'unmatched' }}">
+                    {{ result.status }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/">Upload Another File</a>
+    </div>
+</body>
+</html>
+
